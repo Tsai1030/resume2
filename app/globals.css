@@ -105,9 +105,9 @@ body {
 
 /* Timeline cards (stagger) */
 .tl { position: relative; }
-.tl .item { display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.12); align-items: start; }
+.tl .item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.12); align-items: start; }
 .tl .item:hover .yr { color: var(--amber); }
-.tl .item .yr { font-family: var(--serif); font-size: 1.4rem; font-weight: 900; color: var(--teal); transition: color 0.3s; }
+.tl .item .yr { font-family: var(--serif); font-size: 1.1rem; font-weight: 900; color: var(--teal); transition: color 0.3s; white-space: nowrap; }
 .tl .item h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
 .tl .item .org { color: var(--teal); font-size: 0.95rem; margin-bottom: 0.8rem; }
 .tl .item p { color: rgba(243,235,234,0.72); font-size: 0.95rem; max-width: 720px; }
