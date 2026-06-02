@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>許芳瑜｜履歷 — 方向 C 柔和時間軸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F3EBEA; --amber: #937474; --teal: #B39293; --tint: #D8C4C3; --navy: #2E2424;
+    --sans: "Noto Sans TC", sans-serif; --serif: "Noto Serif TC", serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--teal); color: var(--navy); }
+  .progress { position: fixed; top:0; left:0; height: 4px; width: 0%; background: var(--amber); z-index: 300; border-radius: 0 4px 4px 0; }
+
+  /* floating blobs */
+  .blob { position: fixed; border-radius: 50%; filter: blur(60px); opacity: 0.45; z-index: 0; pointer-events: none; }
+  .blob.b1 { width: 460px; height: 460px; background: var(--teal); top: -120px; right: -100px; animation: float1 14s ease-in-out infinite; }
+  .blob.b2 { width: 360px; height: 360px; background: var(--amber); bottom: 10%; left: -120px; animation: float2 18s ease-in-out infinite; }
+  @keyframes float1 { 0%,100%{transform: translate(0,0)} 50%{transform: translate(-40px,50px)} }
+  @keyframes float2 { 0%,100%{transform: translate(0,0)} 50%{transform: translate(50px,-40px)} }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.8rem; position: relative; z-index: 2; }
+
+  /* nav pill */
+  .nav { position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%); z-index: 250;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(14px); border: 1px solid rgba(46,36,36,0.1);
+    border-radius: 100px; padding: 0.5rem 0.6rem; display: flex; gap: 0.3rem; box-shadow: 0 10px 30px -15px rgba(46,36,36,0.3); }
+  .nav a { text-decoration: none; color: var(--navy); font-size: 0.85rem; padding: 0.5rem 1.1rem; border-radius: 100px; transition: 0.3s; }
+  .nav a:hover, .nav a.active { background: var(--navy); color: var(--cream); }
+  @media (max-width: 640px){ .nav a { padding: 0.5rem 0.7rem; font-size: 0.78rem; } }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 1.5rem 3rem; }
+  .hero .avatar { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg,var(--teal),var(--amber));
+    display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 3.2rem; color: #fff; font-weight: 900;
+    margin-bottom: 2rem; box-shadow: 0 20px 50px -20px rgba(46,36,36,0.5); animation: pop 0.9s cubic-bezier(.16,1,.3,1) both; position: relative; }
+  .hero .avatar::after { content: "個人照"; position: absolute; bottom: -1.8rem; font-family: var(--sans); font-size: 0.7rem; color: var(--navy); opacity: 0.45; letter-spacing: 0.1em; }
+  @keyframes pop { from { transform: scale(0.6); opacity: 0; } }
+  .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 11vw, 7rem); font-weight: 900; line-height: 1; letter-spacing: 0.02em; }
+  .hero h1 span { display: inline-block; animation: drop 0.7s cubic-bezier(.16,1,.3,1) both; }
+  .hero h1 span:nth-child(2){animation-delay:.08s}.hero h1 span:nth-child(3){animation-delay:.16s}
+  @keyframes drop { from { transform: translateY(40px); opacity: 0; } }
+  .hero .role { margin-top: 1.5rem; font-size: 1.15rem; color: var(--navy); opacity: 0.75; animation: fade 1s .5s both; }
+  .hero .pills { margin-top: 2rem; display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; animation: fade 1s .7s both; }
+  .hero .pills span { background: #fff; padding: 0.5rem 1.1rem; border-radius: 100px; font-size: 0.85rem; box-shadow: 0 6px 18px -10px rgba(46,36,36,0.4); }
+  @keyframes fade { from { opacity: 0; transform: translateY(15px);} }
+
+  /* section heading */
+  .sec { padding: 6rem 0; }
+  .shead { text-align: center; margin-bottom: 3.5rem; }
+  .shead .kk { color: var(--amber); font-size: 0.85rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+  .shead h2 { font-family: var(--serif); font-size: clamp(2rem,5vw,3rem); font-weight: 700; margin-top: 0.5rem; }
+
+  .reveal { opacity: 0; transform: translateY(35px); transition: 0.8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* about cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; }
+  .card { background: #fff; border-radius: 20px; padding: 1.8rem; box-shadow: 0 14px 35px -22px rgba(46,36,36,0.4); transition: transform 0.4s; }
+  .card:hover { transform: translateY(-6px); }
+  .card .ic { width: 44px; height: 44px; border-radius: 12px; background: var(--teal); display: flex; align-items: center; justify-content: center; color: var(--navy); font-family: var(--serif); font-weight: 900; margin-bottom: 1rem; }
+  .card h4 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .card p { font-size: 0.9rem; color: var(--navy); opacity: 0.7; }
+
+  /* TIMELINE with sticky year */
+  .timeline { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; }
+  .tl-years { position: relative; }
+  .tl-years .sticky-yr { position: sticky; top: 45vh; font-family: var(--serif); font-size: clamp(3rem,7vw,5rem); font-weight: 900; color: var(--teal); transition: color 0.4s; line-height: 1; }
+  .tl-items { border-left: 2px solid rgba(46,36,36,0.15); padding-left: 2.5rem; }
+  .tl-item { position: relative; padding: 1.5rem 0 3rem; }
+  .tl-item::before { content: ""; position: absolute; left: calc(-2.5rem - 7px); top: 2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--cream); border: 3px solid var(--amber); transition: 0.4s; }
+  .tl-item.in::before { background: var(--amber); transform: scale(1.3); }
+  .tl-item .when { color: var(--amber); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; }
+  .tl-item h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin: 0.3rem 0; }
+  .tl-item .org { color: var(--navy); opacity: 0.7; font-size: 0.92rem; margin-bottom: 0.8rem; }
+  .tl-item .box { background: #fff; border-radius: 16px; padding: 1.3rem 1.5rem; box-shadow: 0 12px 30px -22px rgba(46,36,36,0.45); font-size: 0.92rem; color: var(--navy); }
+  .tl-item .box .t { display: inline-block; font-size: 0.75rem; background: var(--cream); padding: 0.25rem 0.7rem; border-radius: 100px; margin: 0.6rem 0.3rem 0 0; }
+  @media (max-width: 720px){ .timeline { grid-template-columns: 1fr; } .tl-years .sticky-yr { position: static; font-size: 2.5rem; margin-bottom: 1rem; } }
+
+  /* skills marquee */
+  .marquee { overflow: hidden; padding: 0.8rem 0; white-space: nowrap; }
+  .marquee .run { display: inline-flex; gap: 1rem; animation: sx 30s linear infinite; }
+  .marquee.rev .run { animation-direction: reverse; }
+  .marquee .run b { font-weight: 500; font-size: 1.05rem; background: #fff; padding: 0.7rem 1.4rem; border-radius: 100px; box-shadow: 0 8px 20px -14px rgba(46,36,36,0.4); }
+  .marquee .run b.hl { background: var(--amber); color: #fff; }
+  @keyframes sx { to { transform: translateX(-50%); } }
+
+  /* langs */
+  .langs { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+  .lng { background: #fff; border-radius: 20px; padding: 1.8rem; text-align: center; box-shadow: 0 14px 35px -22px rgba(46,36,36,0.4); }
+  .lng h4 { font-family: var(--serif); font-size: 1.6rem; }
+  .ring { --p: 50; width: 90px; height: 90px; border-radius: 50%; margin: 1rem auto 0;
+    background: conic-gradient(var(--teal) calc(var(--p)*1%), rgba(46,36,36,0.12) 0); display: flex; align-items: center; justify-content: center; }
+  .ring span { width: 66px; height: 66px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--navy); }
+  @media (max-width: 640px){ .langs { grid-template-columns: 1fr; } }
+
+  /* contact */
+  .contact { background: var(--navy); color: var(--cream); border-radius: 36px; padding: 5rem 2rem; text-align: center; margin: 2rem; }
+  .contact h2 { font-family: var(--serif); font-size: clamp(2rem,7vw,4rem); font-weight: 900; }
+  .contact a { color: var(--amber); text-decoration: none; font-size: clamp(1.1rem,3vw,1.7rem); display: inline-block; margin-top: 1.5rem; }
+  .contact .row { margin-top: 2.5rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; color: var(--teal); font-size: 0.9rem; }
+  footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--navy); opacity: 0.5; }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="blob b1"></div><div class="blob b2"></div>
+
+<nav class="nav" id="nav">
+  <a href="#about" data-s="about">關於</a><a href="#journey" data-s="journey">經歷</a><a href="#skills" data-s="skills">技能</a><a href="#certs" data-s="certs">證照</a><a href="#contact" data-s="contact">聯絡</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="avatar">許</div>
+  <h1><span>許</span><span>芳</span><span>瑜</span></h1>
+  <p class="role">國際社團會務秘書 ・ 行政專業 ・ 12 年資歷</p>
+  <div class="pills"><span>📋 行政事務</span><span>📊 Excel</span><span>🤝 客訴接待</span><span>🎪 會展籌辦</span></div>
+</header>
+
+<!-- ABOUT -->
+<section class="sec wrap" id="about">
+  <div class="shead reveal"><div class="kk">About</div><h2>關於我</h2></div>
+  <div class="cards">
+    <div class="card reveal"><div class="ic">職</div><h4>現職</h4><p>世界華人工商婦女協會｜國際社團會務秘書</p></div>
+    <div class="card reveal"><div class="ic">學</div><h4>學歷</h4><p>致理・企業管理學系（選修會議展覽）四技畢業</p></div>
+    <div class="card reveal"><div class="ic">地</div><h4>所在地</h4><p>新北市樹林區・希望地點台北、板橋、樹林、新莊</p></div>
+    <div class="card reveal"><div class="ic">標</div><h4>希望職稱</h4><p>行政・人資助理・報關・醫院行政</p></div>
+  </div>
+</section>
+
+<!-- JOURNEY timeline -->
+<section class="sec wrap" id="journey">
+  <div class="shead reveal"><div class="kk">Journey</div><h2>職涯時間軸</h2></div>
+  <div class="timeline">
+    <div class="tl-years"><div class="sticky-yr" id="stickyYr">2023</div></div>
+    <div class="tl-items">
+      <div class="tl-item reveal" data-yr="2023"><div class="when">2023 — 在職中</div><h3>行政人員</h3><div class="org">極勁股份有限公司・台北大同</div>
+        <div class="box">訂單建檔、銀行收支、零用金、薪資計算、線上轉帳、保固卡製作、機器進銷存、計算獎金、客訴處理、對接分公司與廠商、採購，並籌辦年度大會、尾牙、員工旅遊。
+        <div><span class="t">#Excel</span><span class="t">#行政事務</span><span class="t">#資料建檔</span><span class="t">#檔案管理</span></div></div></div>
+      <div class="tl-item reveal" data-yr="2023"><div class="when">2023</div><h3>國際社團會務秘書</h3><div class="org">世界華人工商婦女協會・板橋</div>
+        <div class="box">負責國際社團會務聯繫與秘書事務，協調跨組織的會議與行政流程。</div></div>
+      <div class="tl-item reveal" data-yr="2022"><div class="when">2022 — 2023</div><h3>自行開店・飯飯堂</h3><div class="org">餐飲業・樹林</div>
+        <div class="box">出攤前置作業、製作飯糰、餐點介紹、盤點叫貨 —— 從 0 到 1 經營小店。</div></div>
+      <div class="tl-item reveal" data-yr="2020"><div class="when">2020 — 2022</div><h3>門市人員（組長）</h3><div class="org">Kid's 建築樂園・中和</div>
+        <div class="box">管理 5–8 人團隊，負責銷售、每月盤點與零用金、現場應變、客訴、報表更新、幼兒園團體方案接洽。
+        <div><span class="t">#門市接待</span><span class="t">#銷售</span><span class="t">#客訴處理</span></div></div></div>
+      <div class="tl-item reveal" data-yr="2018"><div class="when">2018 — 2020</div><h3>票務人員</h3><div class="org">力行國際・樹林</div>
+        <div class="box">管理 9–12 人，負責銷售、排班、每週每月盤點、零用金計算、現場應變與客訴處理。</div></div>
+      <div class="tl-item reveal" data-yr="2014"><div class="when">2014 — 2018</div><h3>展場・安親・服務經歷</h3><div class="org">石尚企業／何嘉仁／人才天下 等</div>
+        <div class="box">會展工讀、安親助教、外場吧檯與展覽實習，奠定服務應對與會議展覽基本功。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS marquee -->
+<section class="sec" id="skills">
+  <div class="shead reveal"><div class="kk">Skills</div><h2>專業技能</h2></div>
+  <div class="marquee"><div class="run">
+    <b class="hl">Excel</b><b>行政事務處理</b><b>文件資料建檔</b><b class="hl">檔案管理</b><b>銀行收支</b><b>薪資計算</b>
+    <b class="hl">Excel</b><b>行政事務處理</b><b>文件資料建檔</b><b class="hl">檔案管理</b><b>銀行收支</b><b>薪資計算</b>
+  </div></div>
+  <div class="marquee rev" style="margin-top:1rem;"><div class="run">
+    <b>客訴處理</b><b class="hl">採購</b><b>進銷存</b><b>活動籌辦</b><b class="hl">電話接待</b><b>團隊管理</b><b>排班</b>
+    <b>客訴處理</b><b class="hl">採購</b><b>進銷存</b><b>活動籌辦</b><b class="hl">電話接待</b><b>團隊管理</b><b>排班</b>
+  </div></div>
+</section>
+
+<!-- CERTS -->
+<section class="sec wrap" id="certs">
+  <div class="shead reveal"><div class="kk">Certificates</div><h2>資格認證</h2></div>
+  <div class="cards">
+    <div class="card reveal"><div class="ic">展</div><h4>會議展覽專業人員</h4><p>經濟部國際貿易署</p></div>
+    <div class="card reveal"><div class="ic">E</div><h4>EEC 企業電子化助理</h4><p>中華民國電腦技能基金會</p></div>
+    <div class="card reveal"><div class="ic">商</div><h4>TQC-DK 電子商務概論</h4><p>中華民國電腦技能基金會</p></div>
+    <div class="card reveal"><div class="ic">輸</div><h4>TQC-OA 中文輸入</h4><p>中華民國電腦技能基金會</p></div>
+    <div class="card reveal"><div class="ic">飲</div><h4>丙級飲料調製・餐旅服務</h4><p>勞動部技能檢定中心</p></div>
+    <div class="card reveal"><div class="ic">語</div><h4>JLPT N5・TOEIC</h4><p>國際交流基金・ETS</p></div>
+    <div class="card reveal"><div class="ic">專</div><h4>PMA 專案助理</h4><p>專業認證</p></div>
+    <div class="card reveal"><div class="ic">經</div><h4>兩岸經貿商務人才</h4><p>專業認證</p></div>
+  </div>
+
+  <div class="shead reveal" style="margin-top:4rem;"><h2 style="font-size:1.8rem;">語言能力</h2></div>
+  <div class="langs">
+    <div class="lng reveal"><h4>英文</h4><div class="ring" style="--p:40"><span>略懂</span></div></div>
+    <div class="lng reveal"><h4>日文</h4><div class="ring" style="--p:40"><span>N5</span></div></div>
+    <div class="lng reveal"><h4>台語</h4><div class="ring" style="--p:65"><span>中等</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact reveal">
+    <h2>期待與您共事</h2>
+    <a href="mailto:z0930000580@gmail.com">z0930000580@gmail.com</a>
+    <div class="row"><span>📱 0930-000-580</span><span>📍 新北市樹林區</span><span>🕐 13:00–22:00</span></div>
+  </div>
+</section>
+<footer>© 2026 許芳瑜 ・ 履歷網頁原型（方向 C）</footer>
+
+<script>
+  const progress = document.getElementById('progress');
+  const navA = document.querySelectorAll('.nav a');
+  const ids = ['about','journey','skills','certs','contact'].map(i=>document.getElementById(i));
+  function onScroll(){
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (window.scrollY/h*100)+'%';
+    let cur='';
+    ids.forEach(s=>{ if(s && s.getBoundingClientRect().top < innerHeight*0.4) cur=s.id; });
+    navA.forEach(a=>a.classList.toggle('active', a.dataset.s===cur));
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }); }, {threshold:0.2});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // sticky year follows active timeline item
+  const items = document.querySelectorAll('.tl-item');
+  const stickyYr = document.getElementById('stickyYr');
+  const yio = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting && e.intersectionRatio>0.4){ stickyYr.textContent = e.target.dataset.yr; e.target.classList.add('in'); } });
+  }, { threshold:[0.4], rootMargin:'-30% 0px -30% 0px' });
+  items.forEach(it=>yio.observe(it));
+</script>
+</body>
+</html>

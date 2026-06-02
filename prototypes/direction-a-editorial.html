@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>許芳瑜｜履歷 — 方向 A 編輯雜誌風</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F3EBEA;
+    --amber: #937474;
+    --teal: #B39293;
+    --tint: #D8C4C3;
+    --navy: #2E2424;
+    --navy-80: rgba(46, 36, 36, 0.8);
+    --navy-50: rgba(46, 36, 36, 0.5);
+    --serif: "Noto Serif TC", serif;
+    --sans: "Noto Sans TC", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  ::selection { background: var(--amber); color: #fff; }
+
+  /* ---------- Progress bar ---------- */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: var(--amber); z-index: 200; transition: width 0.1s linear;
+  }
+
+  /* ---------- Side index (sticky) ---------- */
+  .side-nav {
+    position: fixed; right: 2.4rem; top: 50%; transform: translateY(-50%);
+    z-index: 150; display: flex; flex-direction: column; gap: 1.1rem;
+  }
+  .side-nav a {
+    display: flex; align-items: center; gap: 0.7rem; justify-content: flex-end;
+    text-decoration: none; color: var(--navy-50); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+    transition: color 0.3s;
+  }
+  .side-nav a .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--navy-50);
+    transition: all 0.3s;
+  }
+  .side-nav a .lbl { opacity: 0; transform: translateX(8px); transition: all 0.3s; }
+  .side-nav a:hover .lbl, .side-nav a.active .lbl { opacity: 1; transform: translateX(0); }
+  .side-nav a.active { color: var(--navy); }
+  .side-nav a.active .dot { background: var(--amber); transform: scale(1.5); }
+  @media (max-width: 900px) { .side-nav { display: none; } }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 2.4rem; }
+
+  /* ---------- Hero ---------- */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    position: relative; padding: 6rem 0 4rem; }
+  .hero .eyebrow {
+    font-size: 0.85rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--amber); font-weight: 500; margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .hero .eyebrow span { display: inline-block; transform: translateY(110%); animation: rise 0.9s 0.2s cubic-bezier(.16,1,.3,1) forwards; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 900; line-height: 0.95;
+    font-size: clamp(4rem, 16vw, 13rem); letter-spacing: -0.02em;
+  }
+  .hero h1 .ln { display: block; overflow: hidden; }
+  .hero h1 .ln span { display: inline-block; transform: translateY(110%); animation: rise 1s cubic-bezier(.16,1,.3,1) forwards; }
+  .hero h1 .ln:nth-child(1) span { animation-delay: 0.35s; }
+  .hero h1 .ln:nth-child(2) span { animation-delay: 0.5s; color: var(--teal); }
+  @keyframes rise { to { transform: translateY(0); } }
+  .hero .sub {
+    margin-top: 2.5rem; max-width: 540px; font-size: 1.15rem; color: var(--navy-80);
+    opacity: 0; animation: fade 1s 0.9s forwards;
+  }
+  .hero .meta-row {
+    margin-top: 3rem; display: flex; gap: 2.5rem; flex-wrap: wrap;
+    opacity: 0; animation: fade 1s 1.1s forwards;
+  }
+  .hero .meta-row div .k { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy-50); }
+  .hero .meta-row div .v { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; }
+  @keyframes fade { to { opacity: 1; } }
+  .scroll-cue {
+    position: absolute; bottom: 2.5rem; left: 2.4rem; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy-50);
+    display: flex; align-items: center; gap: 0.8rem; opacity: 0; animation: fade 1s 1.5s forwards;
+  }
+  .scroll-cue .bar { width: 50px; height: 1px; background: var(--navy-50); position: relative; overflow: hidden; }
+  .scroll-cue .bar::after { content: ""; position: absolute; inset: 0; background: var(--amber); animation: slidebar 2s infinite; }
+  @keyframes slidebar { 0% { transform: translateX(-100%);} 50%{transform: translateX(0);} 100%{transform: translateX(100%);} }
+
+  /* ---------- Section header ---------- */
+  .sec { padding: 8rem 0; position: relative; }
+  .sec-head { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 4rem; }
+  .sec-head .num { font-family: var(--serif); font-size: 1rem; color: var(--amber); font-weight: 700; }
+  .sec-head h2 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1; }
+  .sec-head .rule { flex: 1; height: 1px; background: var(--navy); opacity: 0.15; align-self: center; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: 0.1s; } .reveal.d2 { transition-delay: 0.2s; } .reveal.d3 { transition-delay: 0.3s; }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+  .about-grid .lead { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.45; font-weight: 400; }
+  .about-grid .lead em { color: var(--amber); font-style: normal; }
+  .info-card { background: var(--navy); color: var(--cream); padding: 2.5rem; border-radius: 2px; }
+  .info-card .row { display: flex; justify-content: space-between; padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.12); font-size: 0.95rem; }
+  .info-card .row:last-child { border: 0; }
+  .info-card .row .k { color: var(--teal); }
+  @media (max-width: 800px){ .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  /* ---------- Horizontal work scroll ---------- */
+  .h-pin { height: 380vh; position: relative; }
+  .h-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+  .h-track { display: flex; gap: 2rem; padding: 0 12vw; will-change: transform; }
+  .job-card {
+    flex: 0 0 clamp(300px, 32vw, 440px); background: #fff; border-radius: 2px;
+    padding: 2.5rem; min-height: 56vh; display: flex; flex-direction: column;
+    border-top: 4px solid var(--amber); box-shadow: 0 20px 50px -30px rgba(46,36,36,0.4);
+  }
+  .job-card .yr { font-family: var(--serif); font-size: 0.9rem; color: var(--amber); font-weight: 700; letter-spacing: 0.05em; }
+  .job-card h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; margin: 0.6rem 0 0.3rem; }
+  .job-card .org { color: var(--navy-80); font-weight: 500; margin-bottom: 1.2rem; font-size: 0.95rem; }
+  .job-card .desc { font-size: 0.9rem; color: var(--navy-80); line-height: 1.7; flex: 1; }
+  .job-card .tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .job-card .tags span { font-size: 0.72rem; padding: 0.25rem 0.7rem; background: var(--cream); border-radius: 100px; color: var(--navy); }
+  .h-intro { position: absolute; top: 14vh; left: 12vw; z-index: 5; pointer-events: none; }
+  .h-hint { position: absolute; bottom: 8vh; left: 12vw; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy-50); }
+
+  /* ---------- Skills marquee ---------- */
+  .marquee { overflow: hidden; padding: 1.5rem 0; border-top: 1px solid rgba(46,36,36,0.15); border-bottom: 1px solid rgba(46,36,36,0.15); white-space: nowrap; }
+  .marquee .run { display: inline-flex; gap: 2.5rem; animation: scroll-x 28s linear infinite; }
+  .marquee.rev .run { animation-direction: reverse; }
+  .marquee .run span { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; color: var(--navy); }
+  .marquee .run span em { color: var(--teal); font-style: normal; }
+  @keyframes scroll-x { to { transform: translateX(-50%); } }
+
+  /* ---------- Certs ---------- */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .cert { background: #fff; padding: 1.8rem; border-radius: 2px; transition: transform 0.4s, box-shadow 0.4s; position: relative; overflow: hidden; }
+  .cert::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--teal); }
+  .cert:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -25px rgba(46,36,36,0.5); }
+  .cert .cat { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); font-weight: 700; }
+  .cert h4 { font-family: var(--serif); font-size: 1.2rem; margin: 0.5rem 0; font-weight: 700; }
+  .cert p { font-size: 0.82rem; color: var(--navy-50); }
+
+  /* ---------- Languages ---------- */
+  .lang-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .lang { background: var(--teal); color: var(--navy); padding: 2.2rem; border-radius: 2px; }
+  .lang h4 { font-family: var(--serif); font-size: 2rem; }
+  .lang .lvl { display: flex; gap: 0.4rem; margin-top: 1rem; }
+  .lang .lvl i { width: 100%; height: 6px; background: rgba(46,36,36,0.2); border-radius: 100px; }
+  .lang .lvl i.on { background: var(--navy); }
+  @media (max-width: 700px){ .lang-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--navy); color: var(--cream); padding: 8rem 0; }
+  .contact h2 { font-family: var(--serif); font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; line-height: 1; }
+  .contact .big-mail { color: var(--amber); text-decoration: none; display: inline-block; transition: transform 0.4s; }
+  .contact .big-mail:hover { transform: translateX(20px); }
+  .contact .foot { margin-top: 4rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.9rem; color: rgba(243,235,234,0.6); }
+
+  .tag-pill { display: inline-block; font-size: 0.78rem; padding: 0.3rem 0.9rem; border: 1px solid var(--navy-50); border-radius: 100px; margin: 0.25rem; }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="side-nav" id="sideNav">
+  <a href="#intro" data-sec="intro"><span class="lbl">簡介</span><span class="dot"></span></a>
+  <a href="#work" data-sec="work"><span class="lbl">經歷</span><span class="dot"></span></a>
+  <a href="#skills" data-sec="skills"><span class="lbl">技能</span><span class="dot"></span></a>
+  <a href="#certs" data-sec="certs"><span class="lbl">證照</span><span class="dot"></span></a>
+  <a href="#lang" data-sec="lang"><span class="lbl">語言</span><span class="dot"></span></a>
+  <a href="#contact" data-sec="contact"><span class="lbl">聯絡</span><span class="dot"></span></a>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap" id="top">
+  <div class="eyebrow"><span>RESUME ・ 行政專業 ・ 2026</span></div>
+  <h1>
+    <span class="ln"><span>許芳瑜</span></span>
+    <span class="ln"><span>Fang-Yu</span></span>
+  </h1>
+  <p class="sub">12–13 年橫跨行政、門市、餐飲與會展的實戰經歷。擅長把繁瑣流程整理得井井有條 —— 從訂單建檔、銀行收支到籌辦年度大會。</p>
+  <div class="meta-row">
+    <div><div class="k">現職</div><div class="v">國際社團會務秘書</div></div>
+    <div><div class="k">學歷</div><div class="v">致理・企業管理</div></div>
+    <div><div class="k">所在地</div><div class="v">新北市樹林區</div></div>
+  </div>
+  <div class="scroll-cue"><span class="bar"></span>向下捲動探索</div>
+</header>
+
+<!-- ABOUT -->
+<section class="sec wrap" id="intro">
+  <div class="sec-head reveal"><span class="num">01</span><h2>關於我</h2><span class="rule"></span></div>
+  <div class="about-grid">
+    <p class="lead reveal">以行政為核心，我把「<em>細節</em>」與「<em>條理</em>」當成專業。十餘年來在不同產業之間累積了採購、出貨、薪資、客訴、活動籌辦等<em>全方位</em>的營運經驗。</p>
+    <div class="info-card reveal d1">
+      <div class="row"><span class="k">性別／年齡</span><span>女・31 歲</span></div>
+      <div class="row"><span class="k">就業狀態</span><span>在職中</span></div>
+      <div class="row"><span class="k">希望職稱</span><span>行政</span></div>
+      <div class="row"><span class="k">希望待遇</span><span>面議</span></div>
+      <div class="row"><span class="k">可上班日</span><span>錄取後一個月</span></div>
+      <div class="row"><span class="k">駕照</span><span>普通重型機車</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK (horizontal pin scroll) -->
+<section id="work">
+  <div class="h-pin">
+    <div class="h-sticky">
+      <div class="h-intro">
+        <div class="sec-head"><span class="num">02</span><h2>工作經歷</h2></div>
+        <p style="color:var(--navy-80); max-width:320px;">橫向捲動，回溯每一段職涯。</p>
+      </div>
+      <div class="h-track" id="hTrack">
+        <div class="job-card">
+          <div class="yr">2023 — 在職</div>
+          <h3>行政人員</h3>
+          <div class="org">極勁股份有限公司・台北市大同區</div>
+          <div class="desc">訂單建檔、銀行收支、零用金、薪資計算、線上轉帳、製作保固卡、機器進銷存、計算獎金、客訴處理、對接分公司與廠商、採購，並籌辦年度大會、尾牙與員工旅遊。</div>
+          <div class="tags"><span>#Excel</span><span>#行政事務</span><span>#資料建檔</span><span>#檔案管理</span></div>
+        </div>
+        <div class="job-card">
+          <div class="yr">2023</div>
+          <h3>國際社團會務秘書</h3>
+          <div class="org">世界華人工商婦女協會・板橋</div>
+          <div class="desc">負責國際社團的會務聯繫與秘書事務，協調跨組織的會議與行政流程。</div>
+          <div class="tags"><span>#會務</span><span>#秘書</span><span>#協調</span></div>
+        </div>
+        <div class="job-card">
+          <div class="yr">2022 — 2023</div>
+          <h3>自行開店・飯飯堂</h3>
+          <div class="org">餐飲業・樹林</div>
+          <div class="desc">出攤前置作業、製作飯糰、餐點介紹、盤點叫貨 —— 從 0 到 1 經營一間小店的完整歷練。</div>
+          <div class="tags"><span>#創業</span><span>#營運</span><span>#盤點</span></div>
+        </div>
+        <div class="job-card">
+          <div class="yr">2020 — 2022</div>
+          <h3>門市人員（組長）</h3>
+          <div class="org">Kid's 建築樂園・中和</div>
+          <div class="desc">管理 5–8 人團隊，負責銷售、每月盤點與零用金、現場應變、客訴、報表更新、與幼兒園團體方案接洽。</div>
+          <div class="tags"><span>#門市接待</span><span>#銷售</span><span>#客訴處理</span></div>
+        </div>
+        <div class="job-card">
+          <div class="yr">2018 — 2020</div>
+          <h3>票務人員</h3>
+          <div class="org">力行國際・樹林</div>
+          <div class="desc">管理 9–12 人，負責銷售、排班、每週每月盤點、零用金計算、現場應變與客訴處理。</div>
+          <div class="tags"><span>#收銀</span><span>#排班</span><span>#團隊管理</span></div>
+        </div>
+        <div class="job-card">
+          <div class="yr">2014 — 2018</div>
+          <h3>展場・安親・服務經歷</h3>
+          <div class="org">石尚企業／何嘉仁／人才天下 等</div>
+          <div class="desc">會展工讀、安親助教、外場吧檯與展覽實習，奠定服務、應對與會議展覽的基本功。</div>
+          <div class="tags"><span>#會展</span><span>#教學</span><span>#服務</span></div>
+        </div>
+      </div>
+      <div class="h-hint">← 滑動瀏覽 ・ SCROLL →</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="wrap"><div class="sec-head reveal"><span class="num">03</span><h2>專業技能</h2><span class="rule"></span></div></div>
+  <div class="marquee">
+    <div class="run">
+      <span>Excel <em>・</em></span><span>行政事務處理 <em>・</em></span><span>資料建檔 <em>・</em></span><span>檔案管理 <em>・</em></span><span>銀行收支 <em>・</em></span><span>薪資計算 <em>・</em></span>
+      <span>Excel <em>・</em></span><span>行政事務處理 <em>・</em></span><span>資料建檔 <em>・</em></span><span>檔案管理 <em>・</em></span><span>銀行收支 <em>・</em></span><span>薪資計算 <em>・</em></span>
+    </div>
+  </div>
+  <div class="marquee rev">
+    <div class="run">
+      <span>客訴處理 <em>・</em></span><span>採購 <em>・</em></span><span>進銷存 <em>・</em></span><span>活動籌辦 <em>・</em></span><span>電話接待 <em>・</em></span><span>團隊管理 <em>・</em></span>
+      <span>客訴處理 <em>・</em></span><span>採購 <em>・</em></span><span>進銷存 <em>・</em></span><span>活動籌辦 <em>・</em></span><span>電話接待 <em>・</em></span><span>團隊管理 <em>・</em></span>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section class="sec wrap" id="certs">
+  <div class="sec-head reveal"><span class="num">04</span><h2>資格認證</h2><span class="rule"></span></div>
+  <div class="cert-grid">
+    <div class="cert reveal"><div class="cat">企劃</div><h4>會議展覽專業人員認證</h4><p>經濟部國際貿易署</p></div>
+    <div class="cert reveal d1"><div class="cat">電子化</div><h4>EEC 企業電子化助理規劃師</h4><p>中華民國電腦技能基金會</p></div>
+    <div class="cert reveal d2"><div class="cat">電子商務</div><h4>TQC-DK 電子商務概論</h4><p>中華民國電腦技能基金會</p></div>
+    <div class="cert reveal"><div class="cat">輸入</div><h4>TQC-OA 中文輸入</h4><p>中華民國電腦技能基金會</p></div>
+    <div class="cert reveal d1"><div class="cat">餐飲</div><h4>丙級飲料調製・餐旅服務</h4><p>勞動部技能檢定中心</p></div>
+    <div class="cert reveal d2"><div class="cat">語言</div><h4>JLPT N5・TOEIC</h4><p>國際交流基金・ETS</p></div>
+    <div class="cert reveal"><div class="cat">專案</div><h4>PMA 專案助理</h4><p>專業認證</p></div>
+    <div class="cert reveal d1"><div class="cat">商務</div><h4>兩岸經貿商務人才</h4><p>專業認證</p></div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="sec wrap" id="lang">
+  <div class="sec-head reveal"><span class="num">05</span><h2>語言能力</h2><span class="rule"></span></div>
+  <div class="lang-grid">
+    <div class="lang reveal"><h4>英文</h4><p>聽說讀寫・略懂</p><div class="lvl"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+    <div class="lang reveal d1"><h4>日文</h4><p>聽說讀寫・略懂・JLPT N5</p><div class="lvl"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+    <div class="lang reveal d2"><h4>台語</h4><p>中等</p><div class="lvl"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:2rem;"><span class="num" style="color:var(--teal)">06</span></div>
+    <h2 class="reveal">一起<br>共事吧。</h2>
+    <p class="reveal d1" style="margin-top:2rem; font-size:1.5rem;">
+      <a href="mailto:z0930000580@gmail.com" class="big-mail">z0930000580@gmail.com →</a>
+    </p>
+    <div class="foot reveal d2">
+      <span>0930-000-580</span>
+      <span>新北市樹林區</span>
+      <span>希望地點：台北・板橋・樹林・新莊</span>
+      <span>聯絡時間 13:00–22:00</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Progress bar + side nav active state
+  const progress = document.getElementById('progress');
+  const navLinks = document.querySelectorAll('.side-nav a');
+  const secs = ['intro','work','skills','certs','lang','contact'].map(id => document.getElementById(id));
+
+  function onScroll() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (window.scrollY / h * 100) + '%';
+    let current = '';
+    secs.forEach(s => { if (s && s.getBoundingClientRect().top < window.innerHeight * 0.4) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.sec === current));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Horizontal pinned scroll for work experience
+  const pin = document.querySelector('.h-pin');
+  const track = document.getElementById('hTrack');
+  function horiz() {
+    const rect = pin.getBoundingClientRect();
+    const total = pin.offsetHeight - window.innerHeight;
+    const prog = Math.min(Math.max(-rect.top / total, 0), 1);
+    const max = track.scrollWidth - window.innerWidth;
+    track.style.transform = `translateX(${-prog * max}px)`;
+  }
+  window.addEventListener('scroll', horiz, { passive: true });
+  window.addEventListener('resize', horiz);
+  horiz();
+</script>
+</body>
+</html>
